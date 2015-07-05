@@ -3,9 +3,9 @@
 // 	devtool: "eval",
 // 	debug: true
 // });	
-var devServer = true;
+var devServer = false;
 var hotComponents = false;
-var hot = true;
+var hot = false;
 
 var path = require("path");
 

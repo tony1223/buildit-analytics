@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "http://localhost:9090/resource/";
+/******/ 	__webpack_require__.p = "/resource/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -44,84 +44,17 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(1);
-	module.exports = __webpack_require__(5);
+	module.exports = __webpack_require__(4);
 
 
 /***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	/*globals window __webpack_hash__ */
-	if(false) {
-		var lastData;
-		var upToDate = function upToDate() {
-			return lastData.indexOf(__webpack_hash__) >= 0;
-		};
-		var check = function check() {
-			module.hot.check(true, function(err, updatedModules) {
-				if(err) {
-					if(module.hot.status() in {abort: 1, fail: 1}) {
-						console.warn("[HMR] Cannot apply update. Need to do a full reload!");
-						console.warn("[HMR] " + err.stack || err.message);
-						window.location.reload();
-					} else {
-						console.warn("[HMR] Update failed: " + err.stack || err.message);
-					}
-					return;
-				}
-
-				if(!updatedModules) {
-					console.warn("[HMR] Cannot find update. Need to do a full reload!");
-					console.warn("[HMR] (Probably because of restarting the webpack-dev-server)");
-					window.location.reload();
-					return;
-				}
-
-				if(!upToDate()) {
-					check();
-				}
-
-				require("./log-apply-result")(updatedModules, updatedModules);
-
-				if(upToDate()) {
-					console.log("[HMR] App is up to date.");
-				}
-
-			});
-		};
-		var addEventListener = window.addEventListener ? function(eventName, listener) {
-			window.addEventListener(eventName, listener, false);
-		} : function (eventName, listener) {
-			window.attachEvent("on" + eventName, listener);
-		};
-		addEventListener("message", function(event) {
-			if(typeof event.data === "string" && event.data.indexOf("webpackHotUpdate") === 0) {
-				lastData = event.data;
-				if(!upToDate() && module.hot.status() === "idle") {
-					console.log("[HMR] Checking for updates on the server...");
-					check();
-				}
-			}
-		});
-		console.log("[HMR] Waiting for update signal from WDS...");
-	} else {
-		throw new Error("[HMR] Hot Module Replacement is disabled.");
-	}
-
-
-/***/ },
+/* 1 */,
 /* 2 */,
 /* 3 */,
-/* 4 */,
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Promise = __webpack_require__(6);
+	var Promise = __webpack_require__(5);
 
 	var util = {
 		base_url:function(str){
@@ -220,12 +153,25 @@
 	module.exports = util;
 
 /***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = __webpack_require__(6)
+
+
+/***/ },
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(7)
+	module.exports = __webpack_require__(7);
+	__webpack_require__(9);
+	__webpack_require__(10);
+	__webpack_require__(11);
+	__webpack_require__(12);
 
 
 /***/ },
@@ -234,20 +180,7 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(8);
-	__webpack_require__(10);
-	__webpack_require__(11);
-	__webpack_require__(12);
-	__webpack_require__(13);
-
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var asap = __webpack_require__(9);
+	var asap = __webpack_require__(8);
 
 	function noop() {}
 
@@ -432,7 +365,7 @@
 
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
@@ -659,12 +592,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Promise = __webpack_require__(8);
+	var Promise = __webpack_require__(7);
 
 	module.exports = Promise;
 	Promise.prototype.done = function (onFulfilled, onRejected) {
@@ -678,12 +611,12 @@
 
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Promise = __webpack_require__(8);
+	var Promise = __webpack_require__(7);
 
 	module.exports = Promise;
 	Promise.prototype['finally'] = function (f) {
@@ -700,15 +633,15 @@
 
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	//This file contains the ES6 extensions to the core Promises/A+ API
 
-	var Promise = __webpack_require__(8);
-	var asap = __webpack_require__(9);
+	var Promise = __webpack_require__(7);
+	var asap = __webpack_require__(8);
 
 	module.exports = Promise;
 
@@ -814,7 +747,7 @@
 
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -822,8 +755,8 @@
 	// This file contains then/promise specific extensions that are only useful
 	// for node.js interop
 
-	var Promise = __webpack_require__(8);
-	var asap = __webpack_require__(14);
+	var Promise = __webpack_require__(7);
+	var asap = __webpack_require__(13);
 
 	module.exports = Promise;
 
@@ -893,13 +826,13 @@
 
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	// rawAsap provides everything we need except exception management.
-	var rawAsap = __webpack_require__(9);
+	var rawAsap = __webpack_require__(8);
 	// RawTasks are recycled to reduce GC churn.
 	var freeTasks = [];
 	// We queue errors to ensure they are thrown in right order (FIFO).
